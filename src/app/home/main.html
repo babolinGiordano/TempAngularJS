@@ -1,0 +1,9 @@
+<a ui-sref="home-search">SEARCH TEST</a>
+<br>
+<br>
+<form name="ricerca">
+   Citta: <input ng-model="vm.query" required />
+   <button
+      ng-disabled="ricerca.$invalid || vm.pending"
+      ng-click="vm.search()">CERCA</button>
+</form>

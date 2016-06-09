@@ -1,0 +1,29 @@
+SEARCH
+<h1>{{ vm.dati.name }}</h1>
+<h2>{{ vm.dati.weather[0].description }}</h2>
+<h2>{{ vm.dati.main.temp | number:0 }}&deg;</h2> <!-- | sta per filtro quindi formatta il valore in numero con 0 decimali -->
+<!-- formatta il risultato in json -->
+<!-- <pre>
+   {{ dati | json:true }}
+</pre> -->
+<a ui-sref="home">Home</a>
+
+<table class="table" ng-if="vm.forecast.list.length > 0">
+    <tr>
+        <th>Data</th>
+        <th>Tmin</th>
+        <th>T</th>
+        <th>Tmax</th>
+    </tr>
+    <tr ng-repeat="riga in vm.forecast.list | limitTo: 5 | orderBy: 'main.temp'"
+        ng-class="{
+            'pari': $even,
+            'dispari' : $odd
+        }">
+        <!-- si associa una classe alla riga in base se e' pari o dispari, questa classe puo essere associato un CSS -->
+        <td>{{ riga.dt }}</td>
+        <td>{{ riga.main.temp_min | number:1 }}&deg;</td>
+        <td>{{ riga.main.temp | number:1 }}&deg;</td>
+        <td>{{ riga.main.temp_max | number:1 }}&deg;</td>
+    </tr>
+</table>
